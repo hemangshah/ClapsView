@@ -1,5 +1,5 @@
-# ClapsView 👋
-Implemented the functionality of Medium.com Claps.
+# ClapsView 👏
+Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show-authors-more-%EF%B8%8F-with-s-c1652279ba01).
 
 [![Build Status](https://travis-ci.org/hemangshah/ClapsView.svg?branch=master)](https://travis-ci.org/hemangshah/ClapsView)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
@@ -43,7 +43,7 @@ Implemented the functionality of Medium.com Claps.
 let claps = ClapsView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 100.0, height: 100.0)))
 claps.delegate = self
 //Customize Emoji.
-claps.emoji = "👋"
+claps.emoji = "👏"
 //The number of claps by all of the user.
 claps.totalClaps = 30
 //The maximum number of claps a user can do.

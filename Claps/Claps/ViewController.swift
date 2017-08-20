@@ -55,7 +55,7 @@ class ViewController: UIViewController {
             let claps = ClapsView.init(frame: CGRect.init(origin: CGPoint.init(x: originX + margin, y: imageViewHeight - (size + margin)), size: CGSize.init(width: size, height: size)))
             claps.delegate = self
             //Emoji to be used with ClapsView.
-            claps.emoji = "👋"
+            claps.emoji = "👏"
             //The number of claps by all of the user.
             claps.totalClaps = 30
             //The maximum number of claps a user can do.

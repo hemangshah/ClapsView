@@ -90,8 +90,8 @@ public class ClapsView: UIView {
         }
     }
     
-    ///Clap Emoji. Default: 👋
-    @IBInspectable public var emoji: String = "👋" {
+    ///Clap Emoji. Default: 👏
+    @IBInspectable public var emoji: String = "👏" {
         didSet {
             if emoji.isEmpty {
                 fatalError("\(String.init(describing: ClapsView.self)) requires an Emoji.")

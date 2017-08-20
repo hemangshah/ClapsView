@@ -11,10 +11,14 @@ import UIKit
 let kClapsForImageView = "kClapsForImageView"
 
 class ViewController: UIViewController {
+    
+    @IBOutlet var clapsView: ClapsView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        //Comment below line to see ClapsView created in UIStoryboard.
         self.addImages()
     }
 

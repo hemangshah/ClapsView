@@ -32,65 +32,66 @@ internal extension Int {
     }
 }
 
-public enum ClapsViewStates {
+@objc public enum ClapsViewStates: Int {
     case begin
     case end
     case clapping
     case finalized
 }
 
-public protocol ClapsViewDelegate {
+@objc public protocol ClapsViewDelegate {
     func clapsViewStateChanged(clapsView: ClapsView, state: ClapsViewStates, totalClaps: Int, currentClaps: Int)
 }
 
+@IBDesignable
 public class ClapsView: UIView {
     
-    public var delegate: ClapsViewDelegate?
+    @IBOutlet public var delegate: ClapsViewDelegate?
     
     ///Inactive State Border Color. Default: .lightGray
-    public var inActiveStateBorderColor: UIColor = .lightGray {
+    @IBInspectable public var inActiveStateBorderColor: UIColor = .lightGray {
         didSet {
             inActiveState()
         }
     }
     
     ///Active State Border Color.
-    public var activeStateBorderColor: UIColor = .RGB(r: 255.0, g: 207.0, b: 74.0) {
+    @IBInspectable public var activeStateBorderColor: UIColor = .RGB(r: 255.0, g: 207.0, b: 74.0) {
         didSet {
             activeState()
         }
     }
     
     ///Inside Background Color. Default: .clear
-    public var insideBakcgroundColor: UIColor = .clear {
+    @IBInspectable public var insideBakcgroundColor: UIColor = .clear {
         didSet {
             emojiLabel?.backgroundColor = insideBakcgroundColor
         }
     }
     
     ///Claps Background Color.
-    public var clapsLabelBackgroundColor: UIColor = .RGB(r: 255.0, g: 207.0, b: 74.0) {
+    @IBInspectable public var clapsLabelBackgroundColor: UIColor = .RGB(r: 255.0, g: 207.0, b: 74.0) {
         didSet {
             clapsLabel?.backgroundColor = clapsLabelBackgroundColor
         }
     }
     
     ///Claps Text Color. Default: .white
-    public var clapsLabelTextColor: UIColor = .white {
+    @IBInspectable public var clapsLabelTextColor: UIColor = .white {
         didSet {
             clapsLabel?.textColor = clapsLabelTextColor
         }
     }
     
     ///Claps Font. Default: SystemFont = 12.0
-    public var clapsLabelFont: UIFont = UIFont.systemFont(ofSize: 12.0) {
+    @IBInspectable public var clapsLabelFont: UIFont = UIFont.systemFont(ofSize: 12.0) {
         didSet {
             clapsLabel?.font = clapsLabelFont
         }
     }
     
     ///Clap Emoji. Default: 👋
-    public var emoji: String = "👋" {
+    @IBInspectable public var emoji: String = "👋" {
         didSet {
             if emoji.isEmpty {
                 fatalError("\(String.init(describing: ClapsView.self)) requires an Emoji.")
@@ -101,7 +102,7 @@ public class ClapsView: UIView {
     }
     
     ///Increase/Decrease the size of Emoji. Default: 40.0 | Minimum: 20.0
-    public var emojiLabelFontSize: CGFloat = 40.0 {
+    @IBInspectable public var emojiLabelFontSize: CGFloat = 40.0 {
         didSet {
             if emojiLabelFontSize >= 20.0 {
                 emojiLabel?.font = UIFont.init(name: "AppleColorEmoji", size: emojiLabelFontSize)
@@ -112,16 +113,16 @@ public class ClapsView: UIView {
     }
     
     ///Show 1000 claps as 1k. Default: false
-    public var showClapsAbbreviated: Bool = false
+    @IBInspectable public var showClapsAbbreviated: Bool = false
     
     ///Total Claps Count by All the Users.
-    public var totalClaps: Int = 0
+    @IBInspectable public var totalClaps: Int = 0
     ///Current Claps Count By a User.
-    public var currentClaps: Int = 0
+    @IBInspectable public var currentClaps: Int = 0
     ///The maximum number of claps allowed.
-    public var maxClaps: Int = 50
+    @IBInspectable public var maxClaps: Int = 50
     ///i.e. currentClaps + iteratorClaps = new claps.
-    public var iteratorClaps: Int = 1
+    @IBInspectable public var iteratorClaps: Int = 1
     
     //To show the exact claps each time.
     fileprivate var lastClapsCount: Int = 0
@@ -358,3 +359,4 @@ public class ClapsView: UIView {
         return true
     }
 }
+

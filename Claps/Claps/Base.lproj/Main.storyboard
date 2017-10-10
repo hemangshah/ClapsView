@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Delegate-->
+        <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Claps" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ViewController" customClass="ViewController" customModule="Claps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="doH-3v-7iV"/>
+                        <viewControllerLayoutGuide type="bottom" id="9OV-vR-GeJ"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Qy-Dc-5dS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RnA-Sy-dpo"/>
+                                </connections>
+                            </webView>
                             <view tag="1234" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7q-ki-Bgb" customClass="ClapsView" customModule="Claps" customModuleProvider="target">
-                                <rect key="frame" x="137" y="283" width="100" height="100"/>
+                                <rect key="frame" x="260" y="552" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="Myp-yR-r9h"/>
-                                    <constraint firstAttribute="width" constant="100" id="YA6-IM-kx3"/>
+                                    <constraint firstAttribute="height" constant="100" id="XNq-tE-DYZ"/>
+                                    <constraint firstAttribute="width" constant="100" id="m98-0g-3uf"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalClaps">
-                                        <integer key="value" value="30"/>
+                                        <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="currentClaps">
                                         <integer key="value" value="5"/>
@@ -38,10 +49,10 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="iteratorClaps">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="emoji" value="🙏"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="emojiLabelFontSize">
                                         <real key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="emoji" value="👏"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="w42-FE-fKt"/>
@@ -50,18 +61,22 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="K7q-ki-Bgb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tiu-TB-pfI"/>
-                            <constraint firstItem="K7q-ki-Bgb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="U0E-at-B5b"/>
+                            <constraint firstAttribute="trailing" secondItem="3Qy-Dc-5dS" secondAttribute="trailing" id="0Jm-3J-h1J"/>
+                            <constraint firstAttribute="trailing" secondItem="K7q-ki-Bgb" secondAttribute="trailing" constant="15" id="6sU-8X-c86"/>
+                            <constraint firstItem="9OV-vR-GeJ" firstAttribute="top" secondItem="K7q-ki-Bgb" secondAttribute="bottom" constant="15" id="FLa-N3-tS1"/>
+                            <constraint firstItem="3Qy-Dc-5dS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YrU-oc-cg8"/>
+                            <constraint firstItem="9OV-vR-GeJ" firstAttribute="top" secondItem="3Qy-Dc-5dS" secondAttribute="bottom" id="eZM-FZ-9dx"/>
+                            <constraint firstItem="3Qy-Dc-5dS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kfU-QD-3h9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="clapsView" destination="K7q-ki-Bgb" id="MnD-ZD-mtq"/>
+                        <outlet property="webView" destination="3Qy-Dc-5dS" id="BET-Ao-jnQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-857" y="115"/>
+            <point key="canvasLocation" x="-1116" y="-443"/>
         </scene>
     </scenes>
 </document>

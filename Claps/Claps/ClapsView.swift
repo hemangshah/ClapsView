@@ -8,20 +8,20 @@
 
 import UIKit
 
-internal extension UIView {
+fileprivate extension UIView {
     func asCircle() {
         self.layer.cornerRadius = self.frame.size.width/2.0
         self.layer.masksToBounds = true
     }
 }
 
-internal extension UIColor {
+fileprivate extension UIColor {
     class func RGB(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
         return UIColor.init(red: r/255, green: g/255, blue: b/255, alpha: 1.0)
     }
 }
 
-internal extension Int {
+fileprivate extension Int {
     var abbreviated: String {
         let abbrev = "KMBTPE"
         return abbrev.characters.enumerated().reversed().reduce(nil as String?) { accum, tuple in
@@ -51,42 +51,42 @@ public class ClapsView: UIView {
     ///Inactive State Border Color. Default: .lightGray
     @IBInspectable public var inActiveStateBorderColor: UIColor = .lightGray {
         didSet {
-            inActiveState()
+            self.inActiveState()
         }
     }
     
     ///Active State Border Color.
     @IBInspectable public var activeStateBorderColor: UIColor = .RGB(r: 255.0, g: 207.0, b: 74.0) {
         didSet {
-            activeState()
+            self.activeState()
         }
     }
     
     ///Inside Background Color. Default: .clear
     @IBInspectable public var insideBakcgroundColor: UIColor = .clear {
         didSet {
-            emojiLabel?.backgroundColor = insideBakcgroundColor
+            self.emojiLabel?.backgroundColor = insideBakcgroundColor
         }
     }
     
     ///Claps Background Color.
     @IBInspectable public var clapsLabelBackgroundColor: UIColor = .RGB(r: 255.0, g: 207.0, b: 74.0) {
         didSet {
-            clapsLabel?.backgroundColor = clapsLabelBackgroundColor
+            self.clapsLabel?.backgroundColor = clapsLabelBackgroundColor
         }
     }
     
     ///Claps Text Color. Default: .white
     @IBInspectable public var clapsLabelTextColor: UIColor = .white {
         didSet {
-            clapsLabel?.textColor = clapsLabelTextColor
+            self.clapsLabel?.textColor = clapsLabelTextColor
         }
     }
     
     ///Claps Font. Default: SystemFont = 12.0
     @IBInspectable public var clapsLabelFont: UIFont = UIFont.systemFont(ofSize: 12.0) {
         didSet {
-            clapsLabel?.font = clapsLabelFont
+            self.clapsLabel?.font = clapsLabelFont
         }
     }
     
@@ -96,7 +96,7 @@ public class ClapsView: UIView {
             if emoji.isEmpty {
                 fatalError("\(String.init(describing: ClapsView.self)) requires an Emoji.")
             } else {
-                emojiLabel?.text = emoji
+                self.emojiLabel?.text = emoji
             }
         }
     }
@@ -104,8 +104,8 @@ public class ClapsView: UIView {
     ///Increase/Decrease the size of Emoji. Default: 40.0 | Minimum: 20.0
     @IBInspectable public var emojiLabelFontSize: CGFloat = 40.0 {
         didSet {
-            if emojiLabelFontSize >= 20.0 {
-                emojiLabel?.font = UIFont.init(name: "AppleColorEmoji", size: emojiLabelFontSize)
+            if self.emojiLabelFontSize >= 20.0 {
+                self.emojiLabel?.font = UIFont.init(name: "AppleColorEmoji", size: emojiLabelFontSize)
             } else {
                 fatalError("\(String.init(describing: ClapsView.self)) requires 20.0 size for Emoji. This is the minimum size.")
             }
@@ -138,12 +138,12 @@ public class ClapsView: UIView {
     
     //MARK: Init
     public override func awakeFromNib() {
-        setup()
+        self.setupClapsView()
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        self.setupClapsView()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -151,7 +151,7 @@ public class ClapsView: UIView {
     }
     
     //MARK: Setup
-    fileprivate func setup() {
+    fileprivate func setupClapsView() {
         if self.frameValidator() {
             self.backgroundColor = UIColor.white
             self.asCircle()

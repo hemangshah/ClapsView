@@ -11,11 +11,12 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 1. [Screenshots](#screenshots)
 2. [Features](#features)
 3. [Installation](#installation)
-4. [Setup](#setup)
-5. [ToDos](#todos)
-6. [Credits](#credits)
-7. [Thanks](#thank-you)
-8. [License](#license)
+4. [Usage Guide](#usage-guide)
+5. [Setup](#setup)
+6. [ToDos](#todos)
+7. [Credits](#credits)
+8. [Thanks](#thank-you)
+9. [License](#license)
 
 ## Screenshots
 

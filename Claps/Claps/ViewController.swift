@@ -8,8 +8,6 @@
 
 import UIKit
 
-let kClapsForImageView = "kClapsForImageView"
-
 class ViewController: UIViewController {
     
     @IBOutlet var clapsView: ClapsView!

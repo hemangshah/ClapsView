@@ -38,6 +38,7 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 
 ## Installation
 
+- **Storyboard** - Add a `UIView` and change the class in Identity Inspector to `ClapsView`.<br>
 - **Manually** - Add `ClapsView.swift` file to your Project.<br>
 - **CocoaPods** – Coming soon.
 
@@ -54,8 +55,6 @@ claps.totalClaps = 30
 claps.maxClaps = 50
 //If set true, 1000 claps will be display as 1k
 claps.showClapsAbbreviated = true
-//Tags for identification.
-claps.tag = 1
 self.view.addSubview(claps)
 claps.center = self.view.center
 

@@ -204,25 +204,28 @@ public class ClapsView: UIView {
             
             self.updateForEndState()
             self.stopTimer()
-            self.finalizeClaps()
+            self.updateClaps()
             self.inActiveState()
         }
     }
     
     @objc fileprivate func actionUserDoubleTaps(gesture: UIPanGestureRecognizer) {
-        if (self.removeClapsButton?.isHidden)! {
-            self.removeClapsButton?.isHidden = false
-        } else {
-            self.removeClapsButton?.isHidden = true
+        if self.currentClaps > 0 {
+            if (self.removeClapsButton?.isHidden)! {
+                self.removeClapsButton?.isHidden = false
+            } else {
+                self.removeClapsButton?.isHidden = true
+            }
         }
     }
     
     @objc fileprivate func actionUserSingleTaps(gesture: UIPanGestureRecognizer) {
-        //self.finalizeClaps()
+        self.finalizeClaps()
     }
     
     @objc fileprivate func actionRemoveClaps(sender: UIButton) {
-        self.remove(withTotalClaps: self.totalClaps, withFinalizeAnimation: false)
+        let totalClaps = (self.totalClaps == self.currentClaps) ? 0 : self.totalClaps
+        self.remove(withTotalClaps: totalClaps, withFinalizeAnimation: false)
         self.removeClapsButton?.isHidden = true
     }
     
@@ -261,21 +264,24 @@ public class ClapsView: UIView {
     }
     
     //MARK: Finalize Claps
+    fileprivate func updateClaps() {
+        let differenceInClapsCount = (self.currentClaps - self.lastClapsCount)
+        self.totalClaps = self.totalClaps + differenceInClapsCount
+        self.finalizeClaps()
+    }
+    
     internal func finalizeClaps() {
-        //Animate the final value to the user.
+        
+        if self.totalClaps <= 0 {
+            return
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timerDuration, execute: {
-            
-            let differenceInClapsCount = (self.currentClaps - self.lastClapsCount)
-            self.totalClaps = self.totalClaps + differenceInClapsCount
             
             if self.showClapsAbbreviated {
                 self.clapsLabel?.text = self.totalClaps.abbreviated
             } else {
                 self.clapsLabel?.text = "+" + "\(self.totalClaps)"
-            }
-            
-            if (self.delegate != nil) {
-                self.delegate?.clapsViewStateChanged(clapsView: self, state: .finalized, totalClaps: self.totalClaps, currentClaps: self.currentClaps)
             }
             
             UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveEaseOut, animations: {
@@ -296,7 +302,7 @@ public class ClapsView: UIView {
         self.countManagement()
         
         if finalizeAnimation {
-            self.finalizeClaps()
+            self.updateClaps()
         }
     }
     

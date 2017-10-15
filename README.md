@@ -21,7 +21,8 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 
 <table>
 <tr>
-<td colspan="3" align="center"><img src = "https://github.com/hemangshah/ClapsView/blob/master/Screenshots/ClapsView.gif" alt = "Usage"></td>
+<td align="center"><img src = "https://github.com/hemangshah/ClapsView/blob/master/Screenshots/Screenshot-1.png" alt = "Usage"></td>
+<td align="center"><img src = "https://github.com/hemangshah/ClapsView/blob/master/Screenshots/Screenshot-2.png" alt = "Usage"></td>
 </tr>
 </table>
 

@@ -42,6 +42,12 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 - **Manually** - Add `ClapsView.swift` file to your Project.<br>
 - **CocoaPods** – Coming soon.
 
+## Usage Guide
+
+- Long Press – To start clapping. 👏
+- Double Tap - To remove current claps.
+- Single Tap - To see current Claps.
+
 ## Setup
 
 ````

@@ -284,6 +284,10 @@ public class ClapsView: UIView {
                 self.clapsLabel?.text = "+" + "\(self.totalClaps)"
             }
             
+            if self.delegate != nil {
+                self.delegate?.clapsViewStateChanged(clapsView: self, state: .finalized, totalClaps: self.totalClaps, currentClaps: self.currentClaps)
+            }
+            
             UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveEaseOut, animations: {
                 self.clapsLabel?.alpha = 1.0
                 self.clapsLabel?.transform = CGAffineTransform(scaleX: 1.5,y: 1.5)

@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 extension ViewController: ClapsViewDelegate {
     func clapsViewStateChanged(clapsView: ClapsView, state: ClapsViewStates, totalClaps: Int, currentClaps: Int) {
         if state == .finalized {
-            print("ClapsViewTag: \(clapsView.tag) | Total Claps:\(totalClaps) | Current Claps:\(currentClaps)")
+            print("Finalized | Total Claps:\(totalClaps) | Current Claps:\(currentClaps)")
         }
     }
 }

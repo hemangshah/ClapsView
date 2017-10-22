@@ -39,11 +39,9 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 
 ## Installation
 
-- **Storyboard** - Add a `UIView` and change the class in Identity Inspector to `ClapsView`.<br>
-- **Manually** - Add `ClapsView.swift` file to your Project.<br>
-- **CocoaPods** – 
-
-    `pod 'ClapsView'`
+1. **Storyboard** – Add a `UIView` and change the class in Identity Inspector to `ClapsView`.<br>
+2. **Manually** – Add `ClapsView.swift` file to your Project.<br>
+3. **CocoaPods** – `pod 'ClapsView'`
     
 > You can read the [CHANGELOG](https://github.com/hemangshah/ClapsView/blob/master/CHANGELOG.md) file for a particular release.
 

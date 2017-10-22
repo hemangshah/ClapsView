@@ -79,7 +79,7 @@ extension ViewController: ClapsViewDelegate {
 
 ## ToDo[s]
 
-- [ ] CocoaPods Support
+- [x] CocoaPods Support
 
 You can [watch](https://github.com/hemangshah/ClapsView/subscription) to <b>ClapsView</b> to see continuous updates. Stay tuned.
 

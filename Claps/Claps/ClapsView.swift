@@ -223,8 +223,7 @@ public class ClapsView: UIView {
         if self.currentClaps > 0 {
             if (self.removeClapsButton?.isHidden)! {
                 self.removeClapsButton?.isHidden = false
-            } else {
-                self.removeClapsButton?.isHidden = true
+                self.autoHideRemoveClapsButton()
             }
         }
     }
@@ -257,19 +256,22 @@ public class ClapsView: UIView {
         
         self.stopTimer()
         
-        if #available(iOS 10.0, *) {
-            self.animationTimer = Timer.scheduledTimer(withTimeInterval: self.timerDuration, repeats: true) { (timer) in
-                self.animateClapsLabel()
-            }
-        } else {
-            // Fallback on earlier versions
-            self.animationTimer = Timer.scheduledTimer(timeInterval: self.timerDuration, target: self, selector: #selector(animateClapsLabel), userInfo: nil, repeats: true)
+        self.animationTimer = Timer.scheduledTimer(withTimeInterval: self.timerDuration, repeats: true) { (timer) in
+            self.animateClapsLabel()
         }
     }
     
     fileprivate func stopTimer() {
         if let timer = animationTimer {
             timer.invalidate()
+        }
+    }
+    
+    fileprivate func autoHideRemoveClapsButton() {
+        if !(self.removeClapsButton?.isHidden)! {
+            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (timer) in
+                self.removeClapsButton?.isHidden = true
+            }
         }
     }
     

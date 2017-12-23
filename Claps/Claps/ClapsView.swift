@@ -32,6 +32,10 @@ fileprivate extension Int {
     }
 }
 
+fileprivate enum ClapsStatus {
+    case loaded, unloaded
+}
+
 @objc public enum ClapsViewStates: Int {
     case begin
     case end
@@ -127,6 +131,9 @@ public class ClapsView: UIView {
     //To show the exact claps each time.
     fileprivate var lastClapsCount: Int = 0
     
+    //To Decide whether to Add (or Already Added) Inner UI Components
+    fileprivate var clapsStatus: ClapsStatus = .unloaded
+    
     //Private Values
     fileprivate var clapsLabel: UILabel? = nil
     fileprivate var emojiLabel: UILabel? = nil
@@ -150,9 +157,11 @@ public class ClapsView: UIView {
         super.init(coder: aDecoder)
     }
     
-    override public func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        self.setupClapsView()
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        if self.clapsStatus == .unloaded {
+            self.setupClapsView()
+        }
     }
 
     //MARK: Setup
@@ -166,24 +175,25 @@ public class ClapsView: UIView {
             self.addClapsLabel()
             self.addRemoveClapsButton()
             self.addSingleAndDoubleTapGestures()
+            self.clapsStatus = .loaded
         }
     }
     
     //MARK: Gestures
     fileprivate func addLongPressGesture() {
         //This gesture will be used to iterate the claps on long press.
-        let longPressGesture = UILongPressGestureRecognizer.init(target: self, action: #selector(actionUserTappedOrLongPress))
+        let longPressGesture = UILongPressGestureRecognizer.init(target: self, action: #selector(self.actionUserTappedOrLongPress))
         self.addGestureRecognizer(longPressGesture)
     }
     
     fileprivate func addSingleAndDoubleTapGestures() {
         //This gesture will be used to see current claps by a user.
-        let singleTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(actionUserSingleTaps))
+        let singleTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(self.actionUserSingleTaps))
         singleTapGesture.numberOfTapsRequired = 1
         self.addGestureRecognizer(singleTapGesture)
         
         //This gesture will be used to show a 'X' button. This will be used to remove all of the claps by a user.
-        let doubleTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(actionUserDoubleTaps))
+        let doubleTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(self.actionUserDoubleTaps))
         doubleTapGesture.numberOfTapsRequired = 2
         self.addGestureRecognizer(doubleTapGesture)
         
@@ -315,7 +325,7 @@ public class ClapsView: UIView {
         
         self.iterateClaps()
         
-        UIView.animate(withDuration: animationDuration, delay: 0.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveEaseOut, animations: {
             self.clapsLabel?.alpha = 1.0
             self.clapsLabel?.transform = CGAffineTransform(scaleX: 1.5,y: 1.5)
             self.emojiLabel?.transform = CGAffineTransform(scaleX: 1.5,y: 1.5)
@@ -359,7 +369,7 @@ public class ClapsView: UIView {
     fileprivate func addEmojiLabel() {
         let label = UILabel.init(frame: initialFrame())
         label.asCircle()
-        label.backgroundColor = insideBakcgroundColor
+        label.backgroundColor = self.insideBakcgroundColor
         label.isUserInteractionEnabled = false
         label.text = emoji
         label.font = UIFont.init(name: "AppleColorEmoji", size: emojiLabelFontSize)
@@ -376,12 +386,12 @@ public class ClapsView: UIView {
             let clapsViewSize = self.frame.size.width/2.0
             let label = UILabel.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: clapsViewSize, height: clapsViewSize)))
             label.asCircle()
-            label.backgroundColor = clapsLabelBackgroundColor
+            label.backgroundColor = self.clapsLabelBackgroundColor
             label.isUserInteractionEnabled = false
             label.text = String(totalClaps)
-            label.font = clapsLabelFont
+            label.font = self.clapsLabelFont
             label.adjustsFontSizeToFitWidth = true
-            label.textColor = clapsLabelTextColor
+            label.textColor = self.clapsLabelTextColor
             label.textAlignment = .center
             label.alpha = 0.0
             label.isUserInteractionEnabled = false
@@ -400,7 +410,7 @@ public class ClapsView: UIView {
             button.asCircle()
             button.setTitle("x", for: .normal)
             button.backgroundColor = self.clapsLabelBackgroundColor
-            button.addTarget(self, action: #selector(actionRemoveClaps), for: .touchUpInside)
+            button.addTarget(self, action: #selector(self.actionRemoveClaps), for: .touchUpInside)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
             superView.addSubview(button)
             button.center = self.center
@@ -412,12 +422,12 @@ public class ClapsView: UIView {
     }
     
     fileprivate func activeState() {
-        self.layer.borderColor = activeStateBorderColor.cgColor
+        self.layer.borderColor = self.activeStateBorderColor.cgColor
         self.layer.borderWidth = 2.0
     }
     
     fileprivate func inActiveState() {
-        self.layer.borderColor = inActiveStateBorderColor.cgColor
+        self.layer.borderColor = self.inActiveStateBorderColor.cgColor
         self.layer.borderWidth = 2.0
     }
     

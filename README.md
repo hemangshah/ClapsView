@@ -14,6 +14,7 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 3. [Installation](#installation)
 4. [Usage Guide](#usage-guide)
 5. [Setup](#setup)
+6. [Usage](#usage)
 6. [ToDos](#todos)
 7. [Credits](#credits)
 8. [Thanks](#thank-you)
@@ -54,7 +55,12 @@ Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show
 
 ## Setup
 
+````swift
+import ClapsView
 ````
+
+## Usage
+````swift
 let claps = ClapsView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 100.0, height: 100.0)))
 claps.delegate = self
 //Customize Emoji.

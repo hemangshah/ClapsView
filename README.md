@@ -1,7 +1,6 @@
 # ClapsView 👏
 Implemented the functionality of [Medium.com Claps](https://blog.medium.com/show-authors-more-%EF%B8%8F-with-s-c1652279ba01).
 
-[![Build Status](https://travis-ci.org/hemangshah/ClapsView.svg?branch=master)](https://travis-ci.org/hemangshah/ClapsView)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
 ![Platform](https://img.shields.io/badge/Platforms-iOS-red.svg)
 ![Swift 4.x](https://img.shields.io/badge/Swift-4.x-blue.svg)
